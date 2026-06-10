@@ -8,4 +8,10 @@ typedef struct Student{
     struct Student* next;
 }Student;
 
+void free_students(Student* head);
+
+Student* append_student(Student* head, int id, const char* name, int score);
+
+void print_students(Student* head);
+
 #endif
