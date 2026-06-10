@@ -58,16 +58,25 @@ int main(int argc, char *argv[]) {
      *
      *   Example parsing skeleton:
      *
-     *   for (int i = 1; i < argc; i++) {
-     *       if (strcmp(argv[i], "-f") == 0 && i + 1 < argc) {
-     *           cmd_file = argv[++i];
-     *       } else {
-     *           csv_path = argv[i];
-     *       }
-     *   }
+     *   
      */
-    (void)argc;
-    (void)argv;
+
+    if (argc<2){
+        #ifdef ADMIN_MODE
+            printf("Usage: ./admin_shell <csv_file> [-command_file]\n");
+        #else
+            printf("Usage: .client_shell <csv_file> [-f command_file]\n");
+        #endif
+            return 1;
+    }
+
+    for (int i = 1; i < argc; i++) {
+            if (strcmp(argv[i], "-f") == 0 && i + 1 < argc) {
+                cmd_file = argv[++i];
+            } else {
+                csv_path = argv[i];
+            }
+        }
 
 #ifdef ADMIN_MODE
     /* Admin shell: supports add, delete, update, save, load, sort, list, find, help, exit */
