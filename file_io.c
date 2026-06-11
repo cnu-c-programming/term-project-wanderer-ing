@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "file_io.h"
+#include "student.h"
 
 Student* load_csv(const char* filename){
     FILE* file = fopen(filename, "r");
@@ -10,7 +11,7 @@ Student* load_csv(const char* filename){
     }
     Student* head = NULL;
     Student* tail = NULL;
-    char line;
+    char line[100];
 
     if(fgets(line, sizeof(line), file)==NULL){
         fclose(file);
@@ -20,10 +21,13 @@ Student* load_csv(const char* filename){
     while(fgets(line, sizeof(line), file)!=NULL){
         int id;
         int score;
-        char name[2];
+        char name[32];
 
         if(sscanf(line, "%d,%31[^,],%d" , &id, name, &score)==3){
             Student* new_student = (Student*)malloc(sizeof(Student));
+            if(new_student==NULL){
+                continue;
+            }
             new_student->id = id;
             strcpy(new_student->name, name);
             new_student->score = score;
