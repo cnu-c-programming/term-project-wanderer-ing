@@ -3,3 +3,4 @@
 
 Student* load_csv(const char* filename); 
 
+void save_csv(const char* filename, Student* head);

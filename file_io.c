@@ -44,3 +44,21 @@ Student* load_csv(const char* filename){
     fclose(file);
     return head;
 }
+
+void save_csv(const char* filename, Student* head) {
+    FILE* file = fopen(filename, "w");
+    if (file == NULL) {
+        printf("Error: Could not save to file.\n");
+        return;
+    }
+
+    fprintf(file, "id,name,score\n");
+
+    Student* current = head;
+    while (current != NULL) {
+        fprintf(file, "%d,%s,%d\n", current->id, current->name, current->score);
+        current = current->next;
+    }
+
+    fclose(file);
+}

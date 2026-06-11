@@ -37,3 +37,28 @@ void free_students(Student* head){
         current = nextNode;
     }
 }
+
+Student* append_student(Student* head, int id, const char* name, int score) {
+    Student* new_student = (Student*)malloc(sizeof(Student));
+    if (new_student == NULL) {
+        printf("Error: Memory allocation failed.\n");
+        return head;
+    }
+
+    new_student->id = id;
+    strcpy(new_student->name, name);
+    new_student->score = score;
+    new_student->next = NULL;
+
+    if (head == NULL) {
+        return new_student;
+    }
+
+    
+    Student* current = head;
+    while (current->next != NULL) { 
+        current = current->next;
+    }
+    current->next = new_student; 
+    return head;
+}

@@ -56,9 +56,14 @@ void run_shell(const char *csv_path) {
             break;
         } 
         else if (strcmp(cmd, "list") == 0) {
+            handle_list(head);
         } 
         else if (strcmp(cmd, "add") == 0) {
+            handle_add(&head);
         } 
+        else if(strcmp(cmd, "save")==0){
+            save_csv(csv_path,head);
+        }
         else {
             printf("Error\n");
         }
