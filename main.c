@@ -31,8 +31,39 @@
  *   - Loop until the user types "exit" or EOF.
  * --------------------------------------------------------------- */
 void run_shell(const char *csv_path) {
-    /* TODO */
-    (void)csv_path;
+    Student* head = load_csv(csv_path);
+    char input[100]; 
+
+    while (1) {
+#ifdef ADMIN_MODE
+        printf("admin> ");
+#else
+        printf("client> ");
+#endif
+
+        if (fgets(input, sizeof(input), stdin) == NULL) {
+            break; 
+        }
+
+        input[strcspn(input, "\n")] = '\0';
+        char* cmd = strtok(input, " "); 
+        
+        if (cmd == NULL) {
+            continue; 
+        }
+
+        if (strcmp(cmd, "exit") == 0) {
+            break;
+        } 
+        else if (strcmp(cmd, "list") == 0) {
+        } 
+        else if (strcmp(cmd, "add") == 0) {
+        } 
+        else {
+            printf("Error\n");
+        }
+    }
+    free_students(head);
 }
 
 /* ---------------------------------------------------------------
