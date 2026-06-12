@@ -16,4 +16,10 @@ void print_students(Student* head);
 
 void free_students(Student* head);
 
+Student* delete_student(Student* head, int id);
+
+void update_student(Student* head, int id, const char* new_name, int new_score);
+
+void find_student(Student* head, int id);
+
 #endif
