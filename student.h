@@ -8,6 +8,9 @@ typedef struct Student{
     struct Student* next;
 }Student;
 
+extern int g_batch_line;
+void print_error(const char* msg);
+
 void free_students(Student* head);
 
 Student* append_student(Student* head, int id, const char* name, int score);
@@ -21,5 +24,6 @@ Student* delete_student(Student* head, int id);
 void update_student(Student* head, int id, const char* new_name, int new_score);
 
 void find_student(Student* head, int id);
+void show_stats(Student* head);
 
 #endif
